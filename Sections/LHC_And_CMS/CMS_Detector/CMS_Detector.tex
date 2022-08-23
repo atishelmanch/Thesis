@@ -1,0 +1,58 @@
+% All of the answers are here: https://twiki.cern.ch/twiki/bin/viewauth/CMS/Internal/PubDetector
+
+\section{The CMS detector} \label{sec:CMS}
+
+The Compact Muon Solenoid (CMS) is a general purpose particle detector located at one of the main interaction points of the LHC. CMS began operation at the start of the LHC in 2009, and collected data delivered by the LHC during LHC Runs 1 (2010-12) and 2 (2015-18). CMS has just recently completed its commissioning phase and started recording data as a part of LHC Run 3, which officially began in July 2022. CMS resides in an underground cavern (UXC), shown in Figure \ref{fig:CMS_image}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/CMS/CMS.jpg}
+    \caption{The Compact Muon Solenoid}
+    \label{fig:CMS_image}
+\end{figure}
+
+CMS is designed as a hermetic layered structure made of different technologies in order to detect different particles coming from proton-proton and heavy ion collisions delivered by the LHC. A slice of the CMS detector and its different technologies, and the different particles detected, is shown in Figure \ref{fig:CMS_PF}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/CMS/CMS_PF.png}
+    \caption{CMS detector technologies and particles detected.}
+    \label{fig:CMS_PF}
+\end{figure}
+
+% Generic CMS description below:
+
+% The central feature of the CMS apparatus is a superconducting solenoid of 6\unit{m} internal diameter, providing a magnetic field of 3.8\unit{T}. 
+% Within the solenoid volume are a silicon pixel and strip tracker, a lead tungstate crystal electromagnetic calorimeter (ECAL), and a brass and scintillator 
+% hadron calorimeter (HCAL), each composed of a barrel and two endcap sections. Forward calorimeters extend the pseudorapidity coverage provided by the barrel 
+% and endcap detectors. Muons are measured in gas-ionization detectors embedded in the steel flux-return yoke outside the solenoid. A more detailed description 
+% of the CMS detector, together with a definition of the coordinate system used and the relevant kinematic variables, can be found in Ref.~\cite{CMS:2008xjf}.
+
+% Events of interest are selected using a two-tiered trigger system. The first level (L1), composed of custom hardware processors, uses information from the 
+% calorimeters and muon detectors to select events at a rate of around 100\unit{kHz} within a fixed latency of about 4\mus~\cite{CMS:2020cmk}. The second level, 
+% known as the high-level trigger (HLT), consists of a farm of processors running a version of the full event reconstruction software optimized for fast processing, 
+% and reduces the event rate to around 1\unit{kHz} before data storage~\cite{CMS:2016ngn}.
+
+% In the barrel section of the ECAL, an energy resolution of about 1\% is achieved for unconverted or late-converting photons in the tens of GeV energy range. 
+% The energy resolution of the remaining barrel photons is about 1.3\% up to $\abs{\eta} = 1$, changing to about 2.5\% at $\abs{\eta} = 1.4$. In the endcaps, 
+% the energy resolution is about 2.5\% for unconverted or late-converting photons, and between 3 and 4\% for the other ones~\cite{CMS:2015myp}.
+
+% The diphoton mass resolution, as measured in $H\rightarrow\gamma\gamma$ decays, is typically in the 1--2\% range, depending on the measurement of the photon 
+% energies in the ECAL and the topology of the photons in the event~\cite{CMS:2020xrn}.
+
+% The integrated luminosities for the 2016, 2017, and 2018 data-taking years have 1.2--2.5\% individual uncertainties~\cite{CMS-LUM-17-003,CMS-PAS-LUM-17-004,CMS-PAS-LUM-18-002}, 
+% while the overall uncertainty for the 2016--2018 period is 1.6\%.
+
+\subsection{Tracker}
+\input{Sections/LHC_And_CMS/CMS_Detector/Tracker}
+
+\subsection{Calorimeters}
+\input{Sections/LHC_And_CMS/CMS_Detector/Calorimeters}
+
+\subsection{Solenoid magnet}
+\input{Sections/LHC_And_CMS/CMS_Detector/SolenoidMagnet}
+
+\subsection{Muon system}
+\input{Sections/LHC_And_CMS/CMS_Detector/MuonSystem/MuonSystem}
+
+\input{Sections/LHC_And_CMS/CMS_Detector/Trigger}

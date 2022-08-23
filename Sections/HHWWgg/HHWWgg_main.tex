@@ -1,0 +1,81 @@
+As mentioned in Chapter \ref{ch:introduction}, the experimental discovery of a particle consistent with the SM Higgs boson by the CMS and ATLAS experiments at the CERN LHC in 2012 marked a milestone moment in the history of particle physics. After having verified the existence of this particle, physicists
+have sought to further their understanding of the Higgs boson and the underlying electroweak symmetry breaking process. Additionally, the Higgs boson
+is widely explored as a potential bridge to physics beyond the standard model (BSM).
+
+Through the investigation of Higgs pair production, the production of two Higgs bosons in a single process introduced in Section \ref{sec:Higgs_Pair_Production}, physicists can both test SM predictions and 
+search for BSM. On the SM front, investigating Higgs pair production allows for a fundamental test as the shape of the Higgs potential in the SM Lagrangian 
+depends on the Higgs self-coupling value described in Section \ref{sec:Higgs}, which can be directly accessed via Higgs pair production. A precise measurement of this coupling would provide the first experimental insight 
+into the shape of the Higgs potential, which can have profound implications on the understanding of our world, for example by providing evidence that the Higgs vaccum expectation value sits at a 
+meta-stable minimum consistent with the SM prediction. Alternatively, a measurement which is not consistent with this SM prediction could hint to physics beyond the standard model \cite{10.3389/fspas.2018.00040}. 
+
+The main LO processes which contribute the most to the di-Higgs production cross section destructively interfere, leading to a low production cross section of about 31.05 fb at a center of mass of $\sqrt{s} = $ 13 TeV, previously explained in Section \ref{sec:Higgs_Pair_Production}. 
+
+% The main leading order (LO) processes which contribute to the cross section of Higgs pair production in the gluon fusion production mode ($gg \to HH$) are the ``triangle'' and ``box'' diagrams, shown in Fig. \ref{SMLO_ggHH_production}. 
+% The box diagram is sensitive to the top Yukawa coupling, while the triangle diagram is sensitive to both the top Yukawa and trilinear self-coupling. 
+% Hence, the resulting cross-section is particularly sensitive to these parameters, whose values are precisely predicted in the SM. Assuming a self-coupling strength as predicted
+% by the SM, these diagrams destructively 
+% interfere, leading to a small production cross section. 
+
+In order to search for this relatively small signal, a search is performed in the WW$\gamma\gamma$ channel. 
+This final state benefits from the sensitive $H\rightarrow\gamma\gamma$ process which provides a narrow, distinguishable signature. Additionally, the
+$H\rightarrow WW$ leg of the decay contributes a relatively large branching ratio among Higgs boson decays of about 22\%. 
+Because the W boson can decay both leptonically (W$\rightarrow\ell\nu$) and hadronically (W$\rightarrow$qq), the $H\rightarrow WW$ and by extension the $HH\rightarrow WW\gamma\gamma$ process has three possible final states:
+The fully-hadronic (FH), semi-leptonic (SL), and fully-leptonic (FL) final states, corresponding to 0, 1, and 2 leptonically decaying W-bosons respectively, whose Feynman diagrams are shown in Figure \ref{fig:HHWWgg_FD_finalStates}. 
+
+\begin{figure}[H]%
+    \setcounter{subfigure}{0} % reset subcaption counter to 0 (a) 
+    \centering
+    \subfloat[{\footnotesize Semi-Leptonic}]{\includegraphics[width=.25\textwidth]{Sections/HHWWgg/images/Introduction/FD_HH_qqlnu.png}}%
+    \qquad
+    \subfloat[{\footnotesize Fully-Hadronic}]{\includegraphics[width=.25\textwidth]{Sections/HHWWgg/images/Introduction/FD_HH_qqqq.png}}%
+    \qquad
+    \subfloat[{\footnotesize Fully-Leptonic}]{\includegraphics[width=.25\textwidth]{Sections/HHWWgg/images/Introduction/FD_HH_lnulnu.png}}%
+    \qquad
+    \caption{The three decay modes of H$\rightarrow$ WW. \label{fig:HHWWgg_FD_finalStates}}%
+\end{figure} 
+
+These three final states can be identified in data and simulation
+with separate selections and categorizations, and their corresponding
+signal and background models can be simultaneously fit to data in order to improve the overall analysis sensitivity towards di-Higgs production. Due to the expected overlap between the FH WW$\gamma\gamma$, FH ZZ$\gamma\gamma$, and bb$\gamma\gamma$ di-Higgs
+final states, an attempt is made to remove as much FH ZZ$\gamma\gamma$ and bb$\gamma\gamma$ as possible. Any residual yields from these non-WW$\gamma\gamma$ final states are considered as signal in the analysis when building simulation templates. 
+
+In addition to the prediction of SM di-Higgs, several BSM models predict the existence of real and virtual heavy particles that can couple to a pair of Higgs bosons \cite{deFlorian:2016spz, Nakamura:2017irk, Englert:2019eyl, Robens:2019kga, Tang:2012pv}.
+These can lead to the appearance of a resonant contribution to the invariant mass of the $HH$ system, or to a significant modification of Higgs boson pair production through virtual processes. As no direct searches for BSM particles have resulted in discoveries at the LHC, we choose to parameterize 
+these possible effects at LHC energy scales using an Effective field theory (EFT) approach ~\cite{deFlorian:2016spz, Carvalho:2015ttv}. The effects are parametrized either as modifications to the SM couplings, 
+or as contact interactions. In the SM coupling modifications, possible new resonances contribute through loop diagrams whereas the contact interaction is a way of 
+describing a process where the mediator has a mass far above the momentum transfer in the event and therefore can be both via a triangular virtual loop or resonant production. 
+The interpretations of this analysis include the purely SM interpretation, an EFT interpretation leading to scans of modified SM and purely BSM lagrangian coupling constants, 
+and a search for 20 EFT benchmarks corresponding to points which are collectively largely representative of the explored 5-dimensional EFT phase space \cite{Carvalho:2015ttv,Buchalla:2018yce,Capozi:2019xsi}.  
+
+This is the first search for Higgs pair production in the WW$\gamma\gamma$ final state performed by the CMS experiment, and is performed using pp collisions at $\sqrt{s} = $ 13 TeV.
+The data sample corresponds to an integrated luminosity of 138 \unit{fb}$^{-1}$ collected with the CMS detector at the CERN LHC during Run 2 (2016-18).
+A search in the SL WW$\gamma\gamma$ final state was performed 
+by the ATLAS experiment using data collected at the LHC in 2016, where a cut-based analysis was performed to obtain an observed (expected) upper limit on SM di-Higgs
+production of 7.7 (5.4) pb at a 95\% confidence level \cite{Aaboud2018}. 
+
+The structure of this chapter is as follows: The overall strategy of the analysis is described in Section \ref{sec:Strategy}. A description of the EFT parameterization and
+benchmarks is provided in Section \ref{sec:EFT_Description}. The data samples and simulated events are described in Section \ref{sec:samples}. 
+The reconstruction of particles as detector objects is described in Section \ref{sec:Objects}. Event selection criteria and categorization are described in Section \ref{fig:HHWWgg_SelectionsAndCat}. 
+The method of signal and background modelling using simulation and data is
+described in Section \ref{sec:AnalyticFitting}. A description of the systematic uncertainties of the analysis is presented in Section \ref{section:Systematics}.
+The results of the analysis are described in Section \ref{sec:results}, and a summary is provided in Section \ref{section:Summary}. 
+
+%%%
+
+\input{Sections/HHWWgg/sections/Strategy.tex}
+\clearpage
+\input{Sections/HHWWgg/sections/EFT_Description}
+\clearpage 
+\input{Sections/HHWWgg/sections/Samples.tex}
+\clearpage
+\input{Sections/HHWWgg/sections/Objects.tex}
+\clearpage
+\input{Sections/HHWWgg/sections/SelectionsAndCategorization.tex}
+\clearpage
+\input{Sections/HHWWgg/sections/SignalAndBackgroundModelling}
+\clearpage
+\input{Sections/HHWWgg/sections/SystematicUncertainties.tex}
+\clearpage
+\input{Sections/HHWWgg/sections/Results.tex}
+\clearpage
+\input{Sections/HHWWgg/sections/Summary.tex}

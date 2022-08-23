@@ -1,0 +1,177 @@
+\subsubsection{Standard Model: Categorization} \label{subsubsec:SLCategorization}
+
+After computing a DNN output score for each event, events are placed into categories based on their DNN score in order to maximize the sensitivity of the DNN categorization. The optimization of categories 
+is done using the output HH class DNN score only, as it has a known correlation to the H and continuum background DNN scores. If an event has a large HH class DNN score, by construction 
+it must have small H and continuum background DNN output scores. 
+Sensitivity is maximized by systematically determining the ideal position of category boundaries in terms of DNN score in order to maximize total significance, a 
+proxy of the result of the asymptotic limits method to be applied during extraction of final results via fitting of the background models to the data.
+
+This categorization is done using signal and background MC in the signal region,
+and therefore is maximally optimial for data when data and MC fully agree in the dataside bands. After scaling MC in the sidebands to the integral of data in the sidebands, a non-optimal data-MC agreement is found. In order to correct for this disagreement, 
+a per-bin reweighting of the DNN score is performed. The reweighting is performed using the Run 2 dataset and 2017 MC, with MC appropriately scaled to cross section, luminosity, 
+PU reweight and any CMS POG (Physics object groups) recommended scale factors. Each DNN score bin weight is computed as the ratio of data to MC in the sideband region. The event weight is then applied to MC 
+in the sideband and signal region events. It should be noted that this reweighting is used only to optimize analysis categories, and is not used for the evaluation of 
+any final results. %The reweighted DNN score distributions is used to compute a per-event weight. 
+
+During category optimization, generally a finner binning of the DNN score distributions leads to a greater significance. However, small bin widths can cause statistical fluctuations which 
+bias categorization, as a very high (low) yield bin would improve (reduce) a potential category's significance drastically, thus biasing the categorization. To ensure that the 
+effect of statistical fluctuations is reduced in the categorization procedure, a smoothing of the background distributions is performed. %using the Smooth-Super method of TGraphSmooth.
+
+% The result of this smoothing can be seen in Figure \ref{fig:DNN-Smoothing}, where the median red line is used as the background distribution for categorization. In addition, 
+% a $\pm 1\sigma$ Poissonian uncertainty is applied bin-by-bin to the smoothed distribution. This is done in order to demonstrate that most fluctuations are Poissonian in nature. 
+
+The smoothing procedure is performed on background MC in the signal and side-band region. The smoothing procedure ensures that statistical fluctuations in the shape of the 
+DNN scores have a negligible impact on the categorization procedure. 
+
+% Events in the DNN discriminant distribution are separated into groups of bins ranging from DNN discriminant scores of 0.1 to 1. Events with a score of less than 0.1 are 
+% not used for categorization. 
+
+An optimal categorization of events based on the DNN discriminant variable is extracted by computing total significance among categories, varying the number of categories, number of equally sized bins, 
+and definition of the signal region. A simultaneous optimization of category boundaries is performed, and the case which yields the greatest significance is chosen as the final categorization. Total significance is defined as the quadtratic sum of category 
+significance, where category significance is defined by 
+Equation \ref{eq:SignifianceDef} (Equation 96 in \cite{Cowan_2011}), where S and B are the number of weighted signal (HH events) and background (Single H $+$ continuum background) events in the category, respectively. Events with a score of less than 
+0.1 are not used for categorization. 
+
+\begin{equation} \label{eq:SignifianceDef}
+  \sqrt{2((S + B)ln(1 + \frac{S}{B}) - S)}
+\end{equation}
+
+The optimal category boundaries for a given number of categories, equally sized bins and signal region window are chosen by computing total significance for every possible position of category boundaries 
+given the number of bins and categories. A simultaneous optimization of category boundaries is performed. The category boundary positions which yield the greatest total significance are defined as the optimal category boundaries for the given number of categories,
+bins and signal region window. 
+
+The number of categories is varied from 1-5, and the number of equally sized bins is varied among: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 380, 760, 1520]. When computing significance 
+values for category optimization, a signal region definition of 122 to 128 GeV is used as this is the experimental resolution: A range centered around the expected higgs mass with a width $\approx \pm$ 1-2 times the expected signal width,
+known a-posteriori from analytic fitting. 
+
+%, and the signal region window is varied
+%among diphoton mass windows of (115, 135), (120, 130), (121, 129), (122, 128), and (123, 127). The signal region definition is varied because the significance computed in the di-photon mass range 115-135 may 
+%not serve as the best proxy for the 95\% CL limit on di-Higgs cross section. 
+
+The optimal categorization was chosen based on the 90 bin case, in which category boundaries are simultaneously optimized among 90 equally sized bins of width (1/90) from output DNN scores 
+of 0.1 to 1. 
+
+%It was also found that a signal region definition of 122 to 128 GeV in the di-photon mass region returns the greatest significance with number of bins and categories held constant,
+%a hint that choosing optimal category boundaries based on this definiton may return the most sensitive result. 
+
+% The expected signal region yields for background (simulated with MC reweighted to the data sidebands) and HH signal, both scaled to the Run 2 luminosity of 137 $fb^{-1}$, are shown in Figure \ref{fig:DnnScore} for the HH node DNN score. These distributions are 
+% used for significance computations.    
+
+A very small increase in total significance is obtained when increasing from four to five total categories, as seen in Figure \ref{fig:SigVsNcats}, in both the case where significance is computed with Equation \ref{eq:SignifianceDef}
+and S / $\sqrt{B}$. In addition, the category boundary 
+for the most sensitive category remains constant. Therefore, the choice is made to classify events into four categories. The category boundaries, number of signal events, number of background 
+events and significance for the N category case where N ranges from 1-5 are shown in Tables \ref{tab:SLcategories_1}, \ref{tab:SLcategories_2}, \ref{tab:SLcategories_3}, \ref{tab:SLcategories_4} and \ref{tab:SLcategories_5},
+where the final categorization is that shown in Table \ref{tab:SLcategories_4}. The HH yields in these tables, denoted by 'S', are properly scaled to the cross section and branching ratio of 
+the Semi-Leptonic final state of HH$\rightarrow$WW$\gamma\gamma$. The MC modeling the backgound in the signal region comes from the continuum background MC which is smoothed before 
+use in the category optimization. Each MC process is scaled to its cross section and branching ratio, as well as the kinematic weight with its fiducial selection, the removal of events with an absolute value of weight times kinematic 
+weight $> 10$.
+
+\newpage 
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{c|c|c|c|c|c|c}
+    CatN & DNN Min & DNN Max & S & $B_{SR}$ & $Data_{Sideband}$ & Significance\\ \hline
+    0 & 0.89 & 1.0 & 0.03568 & 0.81037 & 8.0 & 0.03935 \\ 
+    \end{tabular}
+  \end{center}
+\caption{
+    Semi-Leptonic DNN Category Boundaries and yields in signal region for 1 Categories
+}
+\label{tab:SLcategories_1}
+\end{table}
+ 
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{c|c|c|c|c|c|c}
+    CatN & DNN Min & DNN Max & S & $B_{SR}$ & $Data_{Sideband}$ & Significance\\ \hline
+    0 & 0.89 & 1.0 & 0.03568 & 0.81037 & 8.0 & 0.03935 \\ 
+    1 & 0.1 & 0.89 & 0.23129 & 511.65079 & 3580.0 & 0.01022 \\ 
+    \end{tabular}
+  \end{center}
+\caption{
+    Semi-Leptonic DNN Category Boundaries and yields in signal region for 2 Categories
+}
+\label{tab:SLcategories_2}
+\end{table}
+ 
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{c|c|c|c|c|c|c}
+    CatN & DNN Min & DNN Max & S & $B_{SR}$ & $Data_{Sideband}$ & Significance\\ \hline
+    0 & 0.89 & 1.0 & 0.03568 & 0.81037 & 8.0 & 0.03935 \\ 
+    1 & 0.64 & 0.89 & 0.09449 & 16.43561 & 114.0 & 0.02329 \\ 
+    2 & 0.1 & 0.64 & 0.1368 & 495.21518 & 3466.0 & 0.00615 \\ 
+    \end{tabular}
+  \end{center}
+\caption{
+    Semi-Leptonic DNN Category Boundaries and yields in signal region for 3 Categories
+}
+\label{tab:SLcategories_3}
+\end{table}
+ 
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{c|c|c|c|c|c|c}
+    CatN & DNN Min & DNN Max & S & $B_{SR}$ & $Data_{Sideband}$ & Significance\\ \hline
+    0 & 0.89 & 1.0 & 0.03568 & 0.81037 & 8.0 & 0.03935 \\ 
+    1 & 0.84 & 0.89 & 0.02267 & 1.84053 & 12.0 & 0.01668 \\ 
+    2 & 0.63 & 0.84 & 0.07483 & 15.73924 & 111.0 & 0.01885 \\ 
+    3 & 0.1 & 0.63 & 0.13379 & 494.07101 & 3457.0 & 0.00602 \\ 
+    \end{tabular}
+  \end{center}
+\caption{
+    Semi-Leptonic DNN Category Boundaries and yields in signal region for 4 Categories
+}
+\label{tab:SLcategories_4}
+\end{table}
+ 
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{c|c|c|c|c|c|c}
+    CatN & DNN Min & DNN Max & S & $B_{SR}$ & $Data_{Sideband}$ & Significance\\ \hline
+    0 & 0.89 & 1.0 & 0.03568 & 0.81037 & 8.0 & 0.03935 \\ 
+    1 & 0.84 & 0.89 & 0.02267 & 1.84053 & 12.0 & 0.01668 \\ 
+    2 & 0.64 & 0.84 & 0.07182 & 14.59508 & 102.0 & 0.01878 \\ 
+    3 & 0.25 & 0.64 & 0.0964 & 157.99225 & 974.0 & 0.00767 \\ 
+    4 & 0.1 & 0.25 & 0.0404 & 337.22293 & 2492.0 & 0.0022 \\ 
+    \end{tabular}
+  \end{center}
+\caption{
+    Semi-Leptonic DNN Category Boundaries and yields in signal region for 5 Categories
+}
+\label{tab:SLcategories_5}
+\end{table}
+
+\newpage 
+
+\begin{figure}[H]
+  \setlength{\unitlength}{1mm}
+  \begin{center}
+    \mbox{\includegraphics*[height=100mm]{Sections/HHWWgg/images/DNN/Categorization/SigVsNCats.pdf}
+    }
+  \end{center}
+  \caption{Total significance vs. number of categories in DNN categorization optimization, using either Equation \ref{eq:SignifianceDef} or S / $\sqrt{B}$ to 
+  compute each category's significance, with total significance computed as category significances summed in quadrature. S is the number of weighted HH events, 
+  and B is the weghted number of MC events modeling the continuum background in the signal region plus the number of weighted single H events. Also shown in Table \ref{tab:SigVsNcats_table}}    
+  \label{fig:SigVsNcats}
+\end{figure}
+
+\begin{table}[H]
+  \begin{center}
+    \begin{tabular}{c|c|c}
+    NCategories & Total Significance with Eq \ref{eq:SignifianceDef} & $\frac{S}{\sqrt{B}}$ \\ \hline
+    1 & 0.03935 & 0.039635  \\ 
+    2 & 0.040656 & 0.040933  \\ 
+    3 & 0.046135 & 0.04639  \\ 
+    4 & 0.047095 & 0.047352  \\ 
+    5 & 0.04736 & 0.047616  \\ 
+    \end{tabular}
+  \end{center}
+\caption{
+    Significance values using two equations for significance
+}
+\label{tab:SigVsNcats_table}
+\end{table}
+
+\clearpage

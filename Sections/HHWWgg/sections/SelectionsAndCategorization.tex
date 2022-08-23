@@ -1,0 +1,20 @@
+\section{Selections and Categorization} \label{fig:HHWWgg_SelectionsAndCat}
+
+After implementing the object reconstruction defined in Section \ref{sec:Objects}, each final state performs additional selection and categorization techniques specific to its final state topology.
+
+For all three final states, the distribution of signal events has a peak in the diphoton invariant mass, \mgg, distribution around the mass of the Higgs boson (125 GeV). The analysis strategy is therefore based on defining regions of phase space sensitive to the diphoton mass peak around 125 GeV containing as many HH events as possible, while minimizing the yields of the continuum background and resonant single Higgs backgrounds. However, because each WW$\gamma\gamma$ final state has its own signal topology, dominant background processes and absolute number of simulation events, each final state employs a separate strategy for further selections and categorization techniques after the pre-selections defined in Section \ref{sec:Objects}.
+
+This section is organized as follows: In Section \ref{sec:SL_Selections}, the semi-leptonic final state selections and categorization, including the use of multiple DNNs, will be described. In Section \ref{subsec:FullyHadronicEventSelection}, the fully-hadronic final state selections and categorization, which also make use of DNN methods will be described. Finally, in Section \ref{sec:FullyLeptonicEventSelections} the fully-leptonic final state selections will be described. 
+
+% Semi-Leptonic
+\input{Sections/HHWWgg/sections/Semi_Leptonic_DNNs.tex}
+
+\clearpage
+
+% Fully-Hadronic
+\input{Sections/HHWWgg/sections/FH_DNN.tex}
+
+\clearpage
+
+% Fully-Leptonic
+\input{Sections/HHWWgg/sections/FL_Selections}

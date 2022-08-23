@@ -1,0 +1,19 @@
+\section{Strategy} \label{sec:Strategy_Phase_II}
+
+For the \wwgg portion of this analysis, the strategy is very similar to that of the Run 2 analysis. For the \ttgg portion of the analysis, a similar analysis strategy is followed with respect to the semi-leptonic final state of the Run 2 analysis, namely through the use of a DNN. 
+
+For both HH final states, the signal and background topologies are the same as for the Run 2 analysis as the upgrade in the LHC and CMS detector will not dramatically change the signal and background signatures. In this analysis, a simulation template is formed for HH, H and a continuum of background process. As there is not yet a Phase II dataset to use for a statistical interpretation via a fitting of the simulation templates to the data, a projection is made by fitting the background-only hypothesis simulation templates to the signal $+$ background simulation templates in order to estimate how clear of an HH signature is expected to be seen in the Phase II CMS dataset. This is performed in a signal region defined as the diphoton invariant mass, in the window 115 $<$ $\mgg$ $<$ 135. This region is chosen due to the expectation that the H$\rightarrow\gamma\gamma$ leg of the HH$\rightarrow$(WW$+\tau\tau$) $\gamma\gamma$ processes should provide a peak in this region. 
+
+As was the case for the Run 2 analysis, there are two background signatures present in this analysis: A resonant background from the single Higgs to $\gamma\gamma$ process, and a continuum background formed by a combination of background processes which do not contain a prompt diphoton. An illustration of signal and background signatures is shown in Figure \ref{fig:Signatures}.
+
+In order to optimize the sensitivity of this analysis,
+a DNN (Deep Neural Network) is employed for the Semi-Leptonic WW$\gamma\gamma$ final state and one Tau \ttgg final state. These final states are expected to be the most sensitive due to the increase in branching ratio
+from their hadronic decays, but with the benefit of maintaining a clean signature due to the presence of a lepton in their leptonic decays.
+
+For the Fully-Leptonic \wwgg and two Tau \ttgg channels, cut based strategies are performed due to a lack of number of events.
+
+In order to combine all final state categories in order to extract a more sensitive final result, it is imperative to apply orthogonal selections to simulation events in order to avoid including the same events in multiple background categories. This is done via the event's number of leptons, namely the number of electrons and muons in the \wwgg categories, and number of $\tau$ particles in the \ttgg categories. Each lepton must pass a common set of selections applied for all final state tags. After a set of lepton objects is selected for each simulation event, events fall into the Semi-leptonic \wwgg category if they contain exactly one lepton, the Fully-leptonic \wwgg category if they contain at least two leptons, and the one (two) $\tau$ \ttgg category if they contain exactly one (two) hadronically decaying $\tau$ particles. 
+
+Further event selections are made for the each final state category,
+but by requiring an orthogonal separation of the number of electrons, muons and $\tau$ particles, it is guaranteed no one event can fall into more than one category. Thus, background and signal models
+in different final state categories can be simultaneously fit to pseudo-data in order to obtain a final result which benefits from a combination of the physics signatures of all final states. 

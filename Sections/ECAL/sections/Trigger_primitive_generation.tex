@@ -1,0 +1,116 @@
+\section{Trigger primitive generation} \label{sec:ECAL_TPG}
+
+ECAL provides an input to the CMS Level-1 trigger in the form of trigger primitives. It is one of several inputs to the CMS Level-1 trigger, as shown in Figure \ref{fig:CMS_L1_Trigger}. This section is structured as follows: Section \ref{sec:ECAL_TP} will describe the composition of ECAL trigger primitives, and section \ref{sec:PU_Optimized_Weights} will describe a re-optimization of ECAL TP generation, known as PU optimized weights.  
+
+\subsection{ECAL trigger primitives} \label{sec:ECAL_TP}
+
+ECAL TPs are one of three inputs into the Layer 1 Calorimeter Trigger, shown in Figure \ref{fig:CMS_L1_Trigger}. The basic building blocks of ECAL TPs, with the Phase-I electronics used during LHC data-taking, are ``strips" composed of 5 crystals each in EB, and 1-5 crystals in EE. Every 25 ns, a digitized sample is taken of ECAL signals in every crystal, shown in Figure \ref{fig:ECAL_Waveform_Digis}. During data taking, this leads to a constant stream of values measured in ADC (analog to digital converter) counts. These values are linearized to account for different gains that may be set in different amplifiers, summed within a strip. For each set of 10 linearized strip samples, a digital filter made of a set of 10 FIR (Finite impulse response) weights is multiplied by their corresponding sample values and summed to obtain a transverse energy ($E_{T}$) value, shown in Equation \ref{eq:weights_equations}. In this equation, $S_{i}$ represents digitized sample ``i", where ``i" can range from 0-10 for the 10 digitized samples taken from an ECAL pulse from 0-225ns. Additionally, $w_{i}$ represents the FIR weight assigned to sample ``i", which is pre-determined for each ECAL strip. A requirement on the FIR weights is that they sum to zero, in order to include a dynamic pedestal subtraction, also shown in Equation \ref{eq:weights_equations}. This is performed for every subsequent set of 10 samples, with the window of 10 samples shifting 25ns forward each time, leading to a constant stream of $E_{T}$ values. Additionally, a peak finder is then applied to strip sums in order to determine which BX (Bunch crossing) in a predefined window of BXs has the greatest calculated $E_{T}$ value. Strip energies are then summed to form trigger towers (5 strips in EB, 1-5 strips in EE), for which TPs are formed. An ECAL TP is an $E_{T}$ value of a trigger tower at a given BX, with up to two feature bits. One feature bit is the fine grain bit, and is used to distinguish EM signals from jets. In EB TPs, a bit is also reserved for the rejection on anomalous signals termed ``spikes". When a BX has a TP created, the other BXs in the window are not eligible to have a TP formed. Non-zero TPs are sent to TCC (Trigger concentrator card) boards for further processing and time alignment before being sent to the L1 trigger. A schematic showing this process and computation of strip $E_{T}$ is shown in Figure \ref{fig:ECAL_TP_Formation}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{Images/ECAL/TPG/EM_Waveform_Example.pdf}
+    \caption{ECAL analog pulse shape example, with digitized samples taken every 25ns.}
+    \label{fig:ECAL_Waveform_Digis}
+\end{figure}
+
+\begin{equation} \label{eq:weights_equations}
+E_{T} = \sum_{i=1}^{10}S_{i}\times w_{i}
+   \quad\text{,}\quad 
+\sum_{i=1}^{10}w_{i} = 0 
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/ECAL/TPG/XTAL_To_ET.png} \caption{ECAL strip $E_{T}$ formation.}
+    \label{fig:ECAL_TP_Formation}
+\end{figure}
+
+Each ECAL TP in EB and EE is composed of an $E_{T}$ value computed as the sum of its strip $E_{T}$ values, information bits, and a BX assignment. ECAL TPs are created on-detector, and are transmitted to the Level-1 trigger at the LHC collisions rate of 40 MHz. Because the transverse momentum of two LHC proton bunches before colliding is 0, the detection of hits with a high $E_{T}$ or \pt component is a potential sign of an interesting hard interaction between protons, and thus is a quintessential quantity to consider when forming an L1 decision.  
+
+\subsection{PU optimized weights} \label{sec:PU_Optimized_Weights}
+
+Throughout Runs 1 and 2, two sets of amplitude weights were used when computing ECAL strip energies and hence TP energies, one for EB and one for EE, shown in Figure \ref{fig:ECAL_weights}.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{ccccccccccc} \toprule
+
+sample & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\ \midrule
+EB & 0 & 0 & -0.5625 & -0.546875 & 0.25 & 0.484375 & 0.375 & 0 & 0 & 0 \\ EE & 0 & 0 & -0.65625 & -0.515625 & 0.25 & 0.515625 & 0.40625 & 0 & 0 & 0 \\ \bottomrule
+
+\end{tabular} 
+\end{center}
+\caption{Run 1 and 2 ECAL FIR weights} % \cite{DPG_Slides}
+\label{fig:ECAL_weights}
+\end{figure}
+
+These FIR weight values were obtained from ECAL pulse shapes measured in test beams, as for a given waveform shape, an optimal set of weights can be extracted for measuring the waveform's height.
+
+One way to simulate the photo-detectors' response to crystal scintillation is with an analytic waveform. The function used to simulate the time evolution of the detector response for each crystal is the alpha-beta function defined in Equation \ref{eq:alphaBetaFunction}. 
+
+\begin{equation} \label{eq:alphaBetaFunction}
+	f(t) = 	
+	\begin{cases} 
+      f(t) = A*\Bigg(1 + \dfrac{(t - t_{0})}{(\alpha\beta)}\Bigg)^{\alpha}*e^{\frac{-(t-t_{0})}{\beta}} & t > (t_{0} - \alpha*\beta) \\
+     0 & t \leq (t_{0} -\alpha*\beta)
+  \end{cases}
+\end{equation}
+
+In this equation, A is the height of the waveform in ADC counts, $t_{0}$ is the time of the waveform's peak in nanoseconds, $\alpha$ describes the behavior of the polynomial term, and $\beta$ corresponds to the decay time in the exponential term. The pedestal (P) can also be set, giving the full analytic form of the detector response shown in Equation \ref{eq:FullECALresponsefcn}.
+
+\begin{equation} \label{eq:FullECALresponsefcn}
+G(t;P) = f(t)+P
+\end{equation}
+
+With dedicated fine grain time scans performed on ECAL signals, the parameters $A$, $t_{0}$, $\alpha$ and $\beta$ were measured for each crystal during Run 2. These scans were performed in October 2017, June 2018, and September 2018, and a variation of the parameters among the crystals can be seen over time due to the ageing of ECAL crystals caused by steady dosages of radiation from LHC collisions. 
+
+By producing and sampling these waveforms and applying the Run 2 FIR weights to the samples, one can simulate the reconstructed amplitude of the ECAL TPs as a function of pseudorapidity ($\eta$). A fractional amplitude bias, defined as the percent difference between the reconstructed amplitude, $\hat{A}$ and the true amplitude $A$ and shown in Equation \ref{eq:bias}, is shown as a function of $\eta$ in Figure \ref{fig:ampBiasvseta} \cite{CMS-DP-2019-031, CMS-DP-2019-031_Plots}. 
+
+\begin{equation} \label{eq:bias}
+    \text{bias} = \frac{\hat{A}}{A} - 1
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/ECAL/TPG/AmpBias_vs_eta_Sep18_ps.pdf}
+    \caption{Average bias vs. $\eta$, with no simulated time shift (ts = 0ns), using September 2018 parameters for detector response and Run 2 weights for reconstruction.}
+    \label{fig:ampBiasvseta}
+\end{figure}
+
+It can be seen from this result that there is a bias in the reconstructed amplitude, particularly in the high-$\eta$ region where a greater average and spread of bias is present. In the high-$\eta$ region occupied by the EE, the average fractional amplitude bias is about a factor of three larger than that in the EB region. This is consistent with the fact that ECAL crystals in the high-$\eta$ region receive more radiation from LHC collisions, and therefore their crystals and corresponding waveforms are more distorted and stray further from their original shapes use to derive their FIR weights. This indicates that a more ideal set of weights can be produced in order to produce more accurate TPs. This motivates the derivation of new amplitude weights to see if a reduction in bias average and spread can be made. 
+
+In order to derive updated amplitude weights, a simulation of ECAL electronics' response to scintillation light was setup from the most recent timing scan data obtained in September 2018, including a realistic PU scenario which depends on $\eta$, and distorts the in-time ECAL pulses. Using the alpha-beta analytic waveform to model each crystal's response, and taking a realistic PU energy spectrum and LHC proton bunch train into account (48b7e), the fractional spread of energy biases was computed as a function of signal BX shown in Figure \ref{fig:gr_train_nonzero_Asf_48b7e_0_8_std} for ECAL EB crystals with $|\eta| < 0.7$, and for EE crystals with $2.3 < |\eta| < 3.0$ in Figure \ref{fig:gr_train_nonzero_Asf_48b7e_26_28_std} \cite{CMS-DP-2022-016, CMS-DP-2022-016_Plots}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/ECAL/TPG/gr_train_nonzero_Asf_48b7e_0_8_std.pdf}
+    \caption{Fractional spread of amplitude bias for simulated ECAL crystal responses in the region $|\eta| < 0.7$.}
+    \label{fig:gr_train_nonzero_Asf_48b7e_0_8_std}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/ECAL/TPG/gr_train_nonzero_Asf_48b7e_26_28_std.pdf}
+    \caption{Fractional spread of amplitude bias for simulated ECAL crystal responses in the region $2.3 < |\eta| < 3.0$.}
+    \label{fig:gr_train_nonzero_Asf_48b7e_26_28_std}
+\end{figure}
+
+For both ECAL regions, fractional spread is shown when reconstructing amplitude with the Run 2 weights, PU optimized weights optimized for a strip $E_{T}$ of 2 GeV, and for a strip $E_{T}$ of 30 GeV. In the EB region, an improvement in fractional spread of about 1\% is obtained with respect to Run 2 weights when using weights optimized for PU and $E_{T}$ = 2 GeV. In EE, a more drastic improvement of about 15-20\% is obtained with respect to Run 2 weights. This is consistent with Figure \ref{fig:ampBiasvseta}, which shows there is more room for improvement in EE compared to EB. 
+
+This indicates that updating the existing EB and EE FIR weights may improve the spread of fractional bias in TP $E_{T}$ computation. The effect of updated ECAL TP FIR weights on Level-1 quantities, and further evaluation of the potential gain from updating the ECAL L1 amplitude weights to account for changes in ECAL pulse shapes due to ageing and PU is currently being studied and tested in an effort to improve ECAL for Run 3. A potential positive impact of improved ECAL TP resolution is an increase in the L1 tagging efficiency of electron and photon objects, which can potentially increase the efficiency of triggering on HH$\rightarrow$WW$\gamma\gamma$ events, and events with similar signatures, at the CMS detector. 
+
+In addition to amplitude weights, sets of timing sensitive weights can also be derived. Instead of returning an amplitude when multiplied by waveform samples, these return timing jitter, defined as the time displacement from the expected peak time. These ideal sets of weights are derived to return a bias of 0 when the input waveform is the one they were derived from. Therefore, the effectiveness of these two types of weights can be shown by plotting their bias when different time shifts are applied, defined as a translation of the waveform left or right. For example, a time shift of 5 ns means $t_{0}$ would go from $t_{0}$ to $t_{0} + 5ns$. The average fractional amplitude and time biases as a function of time shift are shown in Figures \ref{fig:ampBiasvsTimeShift} and \ref{fig:timeBiasvsTimeShift}. 
+
+\begin{figure}[H]%
+    \centering
+    \subfloat[Average amplitude bias vs. time shift \label{fig:ampBiasvsTimeShift}]{\includegraphics[width=0.8\textwidth]{Images/ECAL/TPG/AmpBias_vs_ts_Sep18_Id.pdf}}%
+    \\ \newline 
+    \subfloat[Average timing bias vs. time shift \label{fig:timeBiasvsTimeShift}]{\includegraphics[width=0.8\textwidth]{Images/ECAL/TPG/TimeBias_vs_ts_Sep18_Id.pdf}}%
+    \caption{(a) Amplitude and (b) time bias vs time shift for ECAL waveforms, using September 2018 parameters for detector response and ideal weights for reconstruction, for crystals in the $\eta$ region: $(-3.0,-2.6)$}%
+\end{figure}
+
+For time shifts of 0, there is no bias in amplitude or timing weights because the weights were derived for each non-time-shifted waveform. Because the bias is not large for small time shifts, ideal weights can be considered worth investigating. 
+
+\input{Sections/ECAL/sections/Double_Weights}
+
+% %https://indico.cern.ch/event/418639/contributions/1018397/attachments/868759/1216511/proceeding.pdf

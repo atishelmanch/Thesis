@@ -1,0 +1,24 @@
+\section{Simulated samples} \label{sec:Phase_II_Samples}
+
+Because this analysis is a projection study of the prospects for \wwgg and \ttgg searches as the future HL-LHC and upgraded CMS detector, the samples used in the analysis are exclusively simulation. 
+
+As was done for the Run 2 analysis, signal Monte Carlo $gg\rightarrow HH$ samples are generated using \textsc{Powheg v2} \cite{Nason:2004rx, Frixione:2007vw, Alioli:2010xd, Heinrich:2019bkc} 
+at next-to-leading order (NLO) in QCD including the full top quark mass dependence with the SM parameters. 
+
+Subsequent decays of the Higgs boson pairs into WW or $\tau\tau$ and a pair of photons are implemented using \textsc{Pythia 8.212} \cite{Sjostrand:2014zea}. \wwgg samples are generated separately for each final state in \wwgg. 
+For \ttgg signal samples, all possible decays for taus are allowed.
+
+As the process signature remains the same for both the Run 2 and Phase II analyses, the expected background signatures also remain the same. The analysis is affected by backgrounds from single Higgs boson production and by non-resonant backgrounds with continuum $m_{\gamma\gamma}$ spectra.
+The event generator \textsc{Madgraph5\_amcatnlo} \cite{Alwall:2014hca, Artoisenet:2012st} with the FxFx merging scheme \cite{Frederix:2012ps} was used for the generation of the background from SM single Higgs boson production, including  gluon-gluon fusion (ggH), vector-boson fusion (VBFH), associated production with a Z or W boson (VH)  and associated production with a top quark pair (ttH). The additional single Higgs production mode of top quark associated production (tHq) is also included, and was generated using \textsc{Madgraph} version-2.7 at LO. 
+
+The continuum background contribution comes from various SM processes. Most of the dominant backgrounds
+across all the final states are due to the $\gamma\gamma+$jets processes that are 
+modeled with the \textsc{Sherpa} v.2.2.1 generator \cite{Bothmann:2019yzt}.
+$\gamma+$jets, QCD-induced processes and WW processes are modeled with the PYTHIA 8 \cite{Sjostrand:2014zea} generator.
+
+Drell Yan and W production processes in association with photons and jets are modeled using \textsc{Madgraph5} version-2.7 at LO. 
+Finally, the $t\bar{t}$ process is generated using \textsc{Powheg} v2, and $t\bar{t}W$, $t\bar{t}\gamma$, $t\bar{t}\gamma\gamma$, Z$\gamma$ are modeled using \textsc{Madgraph5\_amcatnlo} \cite{Alwall:2014hca,Artoisenet:2012st,Frederix:2012ps}.
+
+For these simulation samples, all are simulated with the Phase-2 upgraded CMS detector geometry using \textsc{Delphes} fast simulation  
+with average pile-up of 200 interactions and at 
+$\sqrt{s}=14$ TeV, the expected data-taking conditions at the HL-LHC. 

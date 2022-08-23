@@ -1,0 +1,35 @@
+\section{Objects}
+\label{sec:Phase_II_ObjectSel}
+
+Before applying final-state specific category selections, a common set of object selections is required for the various physics objects reconstructed event-by-event for each simulation sample. In order to maximize the number HH events saved, each simulation event is required to have at least one pair of photons, called a diphoton.
+
+Photons used in this analysis are required to have a transverse momentum ($p_T$) above 25 GeV, and at least one photon with a \pt of 35 GeV
+within $|\eta| < 2.5$.
+
+The relative isolation of the photon
+candidate, defined as sum of the $p_T$ of all particles within a cone ($\Delta R = \sqrt{(\Delta \eta)^2 + (\Delta \phi)^2}$) of size 0.3 around the photon and divided the sum by the photon $p_T$, 
+is required to be less than 0.3 and must pass a loose identification criteria corresponding to 90\% signal efficiency.
+
+Electrons are required to have $p_T$ above 10 GeV within $|\eta| < 2.5$ excluding the ECAL transition region and 
+must be isolated from photon candidates with an angular separation in the $\eta-\phi$ plane greater than $\Delta R = $ 0.4. 
+The transverse momenta of muons are required to be above 10 GeV and within $|\eta| < 2.5$ 
+, and they are required to be isolated from photon and electron candidates with an angular separation greater than $\Delta R = $ 0.4. 
+Hadronically decaying taus are required to have $p_T >$ 20 GeV within $|\eta| < 2.5$, and are required to be separated from photon, electron and muon candidates  
+with an angular separation greater than $\Delta R = $0.2. The relative isolation of the electrons (muons) is required to be less than 0.3 (0.1).
+
+Jets are reconstructed using the anti-$k_{T}$ clustering method with a distance parameter of 0.4. 
+They are required to have $p_T >$ 30 GeV, be within $|\eta| < 5$ and to be well separated from the photon and lepton candidates with an angular separation greater than $\Delta R = $ 0.4. The likelihood that a jet comes from b-quark hadronization, termed a b-tagging score, is computed using a deep neural network (DNN) based secondary vertex algorithm, \textsc{Deepjet}~\cite{CMS-DP-2018-058, Bols:2020bkb}. 
+
+\section{Event Selections and Categorization}
+\label{sec:Phase_II_Selections}  
+All events are required to have exactly two photons with an invariant mass in the range $100 < \mgg < 180$\GeV. The analysis is performed in mutually exclusive final states targeting decays of the vector bosons referred to as 1L (Semi-leptonic) and 2L (Fully-leptonic) final states for \wwgg, and 1 $\tau$ or 2 $\tau$ final states for \ttgg. 
+
+Here, lepton (L) refers to either an electron ($e^{\pm}$) or muon ($\mu^{\pm}$). 
+
+\input{Sections/Phase_II_HH/sections/Semi_Leptonic_DNNs.tex}
+\input{Sections/Phase_II_HH/sections/Fully-Leptonic.tex}
+\input{Sections/Phase_II_HH/sections/OneTau_DNN.tex}
+
+\subsection{Two Tau leptons final state}
+
+Events fall into the two $\tau$ final state if they contain at least one diphoton candidate, at least two hadronically decaying taus, and zero electrons and photons. For the taus, it is required that they be oppositely charged because they are expected to come from a neutral Higgs boson. In this final state category, no additional selections are required. 

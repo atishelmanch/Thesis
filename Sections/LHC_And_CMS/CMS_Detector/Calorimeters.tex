@@ -1,0 +1,34 @@
+The two calorimeters contained within the CMS detector are the Electromagnetic Calorimeter (ECAL), and the Hadronic Calorimeter (HCAL). A description of ECAL is provided in Section \ref{sec:ECAL}, and a description of HCAL is provided in Section \ref{sec:HCAL}. 
+
+% \subsubsection{The Electromagnetic Calorimeter}\label{sec:ECAL}
+
+% The CMS Electromagnetic Calorimeter is the second layer of the CMS detector, with respect to the interaction point of collisions produced by the LHC. In this Chapter, the CMS ECAL will first be introduced in Section \ref{sec:ECAL_Introduction}. In Section \ref{sec:ECAL_TPG}, the method of ECAL Trigger Primitive Generation as input to the CMS L1 trigger will be described. In Section \ref{sec:DW}, the development and commissioning of a new ECAL feature known as ``Double Weights" will be described, and in Section \ref{sec:ECAL_Operations} the various ECAL operations teams and their responsibilities will be described.  
+
+\input{Sections/ECAL/sections/Introduction}
+% \input{Sections/ECAL/sections/Trigger_primitive_generation}
+% \input{Sections/ECAL/sections/Operations}
+
+\subsubsection{The Hadronic Calorimeter}\label{sec:HCAL}
+
+% arxiv 1910.00079
+% https://arxiv.org/pdf/1706.04965.pdf
+% https://cms.cern/detector/measuring-energy/energy-hadrons-hcal
+
+The CMS hadronic calorimeter is a sampling calorimeter composed of plastic scintillator and brass, whose purpose is to measure the energies of hadrons. This measurement is crucial for detecting clusters of hadronic energy, which can be matched with regions of high track activity in the identification of jets. 
+
+A diagram of the HCAL layout during the start of Run 2 is shown in Figure \ref{fig:HCAL_Layout}. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/CMS/HCAL/Figure_001.pdf}
+    \caption{CMS HCAL layout in 2016}
+    \label{fig:HCAL_Layout}
+\end{figure}
+
+The HCAL is composed of a hadron barrel (HB), hadron endcap (HE), hadron outer (HO), and hadron forward (HF) sections. HB (HE) has a pseudorapidity coverage of $|\eta| < 1.3$ ($1.3 < |\eta| < 3.0$). HO provides additional measurements in the barrel range, and the HCAL is complimented by HF which extends the angular coverage up to about $|\eta| = 5$. This is very useful, for example, for detecting high pseudorapidity jets originating from Vector Boson Fusion (VBF) quarks, allowing for the detection of an additional production mode for many physics signatures. 
+
+% https://agenda.linearcollider.org/event/7889/contributions/42557/attachments/33904/52053/CMSCalRun2AdamsLCWS2018v2.pdf
+
+During Run 2, HE was upgraded via a replacement of its HPD (Hybrid Photodetectors) in favor of SiPMs (Silicon PhotoMultipliers). In addition, HF was upgraded in order to improve its PMT (Photomultiplier Tubes) in order to better distinguish false signals resulting from cherenkov light, from direct PMT hits from high energy muons. 
+
+% http://cds.cern.ch/record/2627475/files/CR2018_090.pdf?version=2

@@ -1,0 +1,21 @@
+\chapter{Deep Neural Network Employment}
+\label{sec:DNN}
+
+A deep neural network (DNN) is a multi-layered network of inter-connected mathematical functions that performs a transformation between a set of input values and a set of output values.
+The coefficients (weights) within these functions can be varied (trained) to obtain the desired output. Typically, these are varied in an iterative procedure in 
+which a loss-function is used as a metric of the performance and weights are adapted in order to minimise this metric. There are many applications for deep neural networks thus, there are 
+several types of problems they can be used to solve and infinite variations in the implementation. In this analysis supervised trainings of deep neural networks are performed 
+which means the training dataset is fully-labelled. We use the information on the final state physics objects recorded by the CMS detector as input values where 
+each event is labelled as either ''signal'' or ''background''. The aim of the network is to use the input features to predict whether an event is from the signal or background process.
+
+Deep neural networks are very adept at uncovering small signals amongst much larger backgrounds. From very basic features, the network can learn how they (and their correlations) can be used to distinguish signal from background. This is usually much more powerful than the cut-based approach which
+optimises cut values sequentially to maximise signal acceptance and background rejection simultaneously. Furthermore, one does not need to hand-craft 
+complicated input features with large discriminatory power. If such a feature can be constructed using low-level information (e.g. four-vectors of physics objects), 
+then it is deducible provided the network is given the required low-level information \cite{whiteson_DNN}.
+
+In this analysis, a deep neural network is used to distinguish between the di-Higgs WW$\gamma\gamma$, signal process and the major backgrounds. 
+The signal signature varies depending on the targeted decay of the W bosons and therefore so do the dominant backgrounds. 
+As a result, networks are trained separately, each targeting a specific final state. Once trained, the neural network should predict values close to one for signal-like events
+and zero for background-like events. The distribution output by the DNN is used to further categorise events in a way that maximises the signal significance 
+in the categories most sensitive to the signal. The m$_{\gamma\gamma}$ distribution of events within these categories make up independent templates that
+are used as input to the maximum likelihood fit. All networks have been trained using Keras 2.3.1 with the TensorFlow backend.
